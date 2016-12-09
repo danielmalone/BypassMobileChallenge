@@ -9,6 +9,8 @@ import retrofit.RestAdapter;
 
 public class BaseActivity extends AppCompatActivity {
 
+    private static final String TAG = "BaseActivity";
+
     private GithubEndpoint endpoint;
 
     @Override
