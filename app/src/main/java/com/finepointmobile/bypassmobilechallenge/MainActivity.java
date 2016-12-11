@@ -3,9 +3,8 @@ package com.finepointmobile.bypassmobilechallenge;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
-import com.finepointmobile.bypassmobilechallenge.adapter.MyAdapter;
+import com.finepointmobile.bypassmobilechallenge.adapter.MainAdapter;
 import com.finepointmobile.bypassmobilechallenge.model.User;
 
 import java.util.ArrayList;
@@ -34,12 +33,8 @@ public class MainActivity extends BaseActivity {
         getEndpoint().getOrganizationMember("bypasslane", new Callback<List<User>>() {
             @Override
             public void success(List<User> users, Response response) {
-                Log.d(TAG, "success: " + users);
-                Log.d(TAG, "success: " + response);
-
 
                 for (int i = 0; i < users.size(); i++) {
-                    Log.d(TAG, "success: " + users.get(i).getName());
                     mDataset.add(users.get(i));
                 }
 
@@ -68,7 +63,7 @@ public class MainActivity extends BaseActivity {
      * Load RecyclerView with dataset.
      */
     private void addAdapter() {
-        mAdapter = new MyAdapter(MainActivity.this, mDataset);
+        mAdapter = new MainAdapter(MainActivity.this, mDataset);
         mRecyclerView.setAdapter(mAdapter);
     }
 }
