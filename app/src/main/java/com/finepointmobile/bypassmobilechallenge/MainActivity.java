@@ -3,6 +3,7 @@ package com.finepointmobile.bypassmobilechallenge;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 
 import com.finepointmobile.bypassmobilechallenge.adapter.MainAdapter;
 import com.finepointmobile.bypassmobilechallenge.model.User;
@@ -30,6 +31,8 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        setupToolbar();
+
         setupRecyclerView();
 
         getEndpoint().getOrganizationMember("bypasslane", new Callback<List<User>>() {
@@ -47,6 +50,13 @@ public class MainActivity extends BaseActivity {
             public void failure(RetrofitError error) {
             }
         });
+    }
+
+    protected void setupToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
     /**
@@ -70,7 +80,7 @@ public class MainActivity extends BaseActivity {
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    public class CustomComparator implements Comparator<User> {
+    private class CustomComparator implements Comparator<User> {
         @Override
         public int compare(User o1, User o2) {
             return o1.getName().compareToIgnoreCase(o2.getName());

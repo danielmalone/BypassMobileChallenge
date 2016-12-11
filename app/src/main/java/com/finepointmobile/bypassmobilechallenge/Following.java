@@ -25,6 +25,8 @@ public class Following extends MainActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.following);
 
+        setupToolbar();
+
         mUsername = (TextView) findViewById(R.id.username);
 
         Intent intent = getIntent();
